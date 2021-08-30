@@ -31,6 +31,8 @@ def add_student():
         student['science_mark'] = request.form.get('science_mark')
         student['does_homework'] = request.form.get('does_homework') == 'on'
         # TODO: Add new keys to student dictionary for new fields
+        student['mathematics_mark'] = request.form.get('mathematics_mark')
+        student['stays_on_task'] = request.form.get('stays_on_task') == 'on'
 
         # Load the students from the CSV file and add the new student
         students = load_students()
@@ -39,7 +41,7 @@ def add_student():
         # Open up the csv file and overwrite the contents
         with open('students.csv', 'w', newline='') as file:
             # TODO: Edit the fieldnames to include the new fields
-            fieldnames = ['name', 'english_mark', 'science_mark', 'does_homework']
+            fieldnames = ['name', 'english_mark', 'science_mark', 'does_homework','mathematics_mark','stays_on_task']
             writer = csv.DictWriter(file, fieldnames = fieldnames)
             writer.writeheader()
             writer.writerows(students)
